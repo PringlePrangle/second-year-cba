@@ -4,7 +4,6 @@
     "dependencies": {
         "device": "*",
         "animation": "*",
-        "arcade-minimap": "github:microsoft/arcade-minimap#v0.6.1",
         "darts": "*",
         "sprite-scaling": "*",
         "Timers": "github:microsoft/arcade-timers#v1.1.0"

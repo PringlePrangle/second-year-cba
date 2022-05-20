@@ -54,9 +54,15 @@ let targetright = sprites.create(assets.image`targetright`, SpriteKind.Food)
 tiles.placeOnRandomTile(targetright, assets.tile`myTile4`)
 if (randint(1, 4) == 1) {
     snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(snek, sprites.dungeon.floorDark1)
+    tiles.placeOnRandomTile(snek, assets.tile`myTile12`)
+    animation.runImageAnimation(
+    snek,
+    assets.animation`snekfromup`,
+    200,
+    true
+    )
     snek.setVelocity(200, 200)
-    snek.follow(tarketup)
+    snek.follow(tarketup, 100)
 }
 forever(function () {
     controller.moveSprite(mySprite, 50, 50)

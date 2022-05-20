@@ -1,4 +1,7 @@
 /**
+ * create and set snek3 target
+ */
+/**
  * setting the enemies target
  */
 /**
@@ -6,9 +9,6 @@
  */
 /**
  * create and set snek2 target
- */
-/**
- * create and set snek3 target
  */
 // create and set snek4 target
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, location) {
@@ -18,6 +18,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, 
     50,
     false
     )
+    gunup = sprites.createProjectileFromSprite(assets.image`myImage8`, gunup, 0, 150)
+    pause(2000)
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.y += -1
@@ -36,6 +38,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile17`, function (sprite4,
     50,
     false
     )
+    projdown = sprites.createProjectileFromSprite(assets.image`myImage6`, projdown, 0, -150)
+    pause(2000)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile18`, function (sprite2, location2) {
     animation.runImageAnimation(
@@ -44,6 +48,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile18`, function (sprite2,
     50,
     false
     )
+    projright = sprites.createProjectileFromSprite(assets.image`myImage`, gunright, 150, 0)
+    pause(2000)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.x += 1
@@ -72,9 +78,6 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`transparency16`, function (sprite5, location5) {
-	
-})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite3, location3) {
     animation.runImageAnimation(
     gunleft,
@@ -82,12 +85,17 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite3,
     50,
     false
     )
+    projleft = sprites.createProjectileFromSprite(assets.image`myImage5`, gunleft, -150, 0)
+    pause(2000)
 })
 let tall: Sprite = null
 let snekdown: Sprite = null
 let snekright: Sprite = null
 let snekleft: Sprite = null
 let snek: Sprite = null
+let projleft: Sprite = null
+let projright: Sprite = null
+let projdown: Sprite = null
 let gunleft: Sprite = null
 let gundown: Sprite = null
 let gunright: Sprite = null
@@ -110,6 +118,18 @@ gunup = sprites.create(assets.image`gunup`, SpriteKind.Food)
 gunright = sprites.create(assets.image`gunright`, SpriteKind.Food)
 gundown = sprites.create(assets.image`gundown`, SpriteKind.Food)
 gunleft = sprites.create(assets.image`gunleft`, SpriteKind.Food)
+tiles.placeOnRandomTile(gundown, assets.tile`myTile17`)
+tiles.placeOnRandomTile(gunleft, assets.tile`myTile16`)
+tiles.placeOnRandomTile(gunright, assets.tile`myTile18`)
+tiles.placeOnRandomTile(gunup, assets.tile`myTile19`)
+gundown.setScale(1.5, ScaleAnchor.Top)
+gunleft.setScale(1.5, ScaleAnchor.Right)
+gunright.setScale(1.5, ScaleAnchor.Left)
+gunup.setScale(1.5, ScaleAnchor.Bottom)
+let projectileup = sprites.createProjectileFromSprite(assets.image`myImage8`, gunup, 50, 50)
+projdown = sprites.createProjectileFromSprite(assets.image`myImage6`, gundown, 50, 50)
+projright = sprites.createProjectileFromSprite(assets.image`myImage`, gunright, 50, 50)
+projleft = sprites.createProjectileFromSprite(assets.image`myImage5`, gunleft, 50, 50)
 if (randint(1, 4) == 1) {
     snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
     tiles.placeOnRandomTile(snek, assets.tile`myTile12`)
@@ -119,7 +139,7 @@ if (randint(1, 4) == 1) {
     200,
     true
     )
-    snek.setScale(3, ScaleAnchor.Middle)
+    snek.setScale(3, ScaleAnchor.Bottom)
     snek.setVelocity(200, 200)
     snek.follow(tarketup, 100)
 }
@@ -132,7 +152,7 @@ if (randint(1, 4) == 2) {
     200,
     true
     )
-    snekleft.setScale(3, ScaleAnchor.Middle)
+    snekleft.setScale(3, ScaleAnchor.Right)
     snekleft.setVelocity(200, 200)
     snekleft.follow(targetleft, 100)
 }
@@ -145,7 +165,7 @@ if (randint(1, 4) == 3) {
     200,
     true
     )
-    snekright.setScale(3, ScaleAnchor.Middle)
+    snekright.setScale(3, ScaleAnchor.Left)
     snekright.setVelocity(200, 200)
     snekright.follow(targetright, 100)
 }
@@ -158,7 +178,7 @@ if (randint(1, 4) == 4) {
     200,
     true
     )
-    snekdown.setScale(3, ScaleAnchor.Middle)
+    snekdown.setScale(3, ScaleAnchor.Top)
     snekdown.setVelocity(200, 200)
     snekdown.follow(snekdown, 100)
 }

@@ -1,4 +1,7 @@
 /**
+ * setting the enemies target
+ */
+/**
  * create and set snek1 target
  */
 /**
@@ -7,12 +10,15 @@
 /**
  * create and set snek3 target
  */
-/**
- * create and set snek4 target
- */
-/**
- * movement keys
- */
+// create and set snek4 target
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, location) {
+    animation.runImageAnimation(
+    gunup,
+    assets.animation`gunupshoot0`,
+    50,
+    false
+    )
+})
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.y += -1
     animation.runImageAnimation(
@@ -20,6 +26,23 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     assets.animation`myAnim1`,
     200,
     true
+    )
+})
+// movement keys
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile17`, function (sprite4, location4) {
+    animation.runImageAnimation(
+    gundown,
+    assets.animation`gundownshoot`,
+    50,
+    false
+    )
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile18`, function (sprite2, location2) {
+    animation.runImageAnimation(
+    gunright,
+    assets.animation`gunrightshoot`,
+    50,
+    false
     )
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -49,17 +72,26 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`transparency16`, function (sprite, location) {
+scene.onOverlapTile(SpriteKind.Player, assets.tile`transparency16`, function (sprite5, location5) {
 	
 })
-/**
- * setting the enemies target
- */
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite3, location3) {
+    animation.runImageAnimation(
+    gunleft,
+    assets.animation`gunrightshoot0`,
+    50,
+    false
+    )
+})
 let tall: Sprite = null
 let snekdown: Sprite = null
 let snekright: Sprite = null
 let snekleft: Sprite = null
 let snek: Sprite = null
+let gunleft: Sprite = null
+let gundown: Sprite = null
+let gunright: Sprite = null
+let gunup: Sprite = null
 let mySprite: Sprite = null
 mySprite = sprites.create(assets.image`player`, SpriteKind.Player)
 mySprite.setScale(0.6, ScaleAnchor.Middle)
@@ -74,52 +106,11 @@ let targetleft = sprites.create(assets.image`targetleft`, SpriteKind.Food)
 tiles.placeOnRandomTile(targetleft, assets.tile`myTile6`)
 let targetright = sprites.create(assets.image`targetright`, SpriteKind.Food)
 tiles.placeOnRandomTile(targetright, assets.tile`myTile4`)
-if (true) {
-    snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(snek, assets.tile`myTile12`)
-    animation.runImageAnimation(
-    snek,
-    assets.animation`snekfromup`,
-    200,
-    true
-    )
-}
-if (true) {
-    snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(snek, assets.tile`myTile12`)
-    animation.runImageAnimation(
-    snek,
-    assets.animation`snekfromup`,
-    200,
-    true
-    )
-}
-if (true) {
-    snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(snek, assets.tile`myTile12`)
-    animation.runImageAnimation(
-    snek,
-    assets.animation`snekfromup`,
-    200,
-    true
-    )
-}
-if (true) {
-    snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(snek, assets.tile`myTile12`)
-    animation.runImageAnimation(
-    snek,
-    assets.animation`snekfromup`,
-    200,
-    true
-    )
-}
+gunup = sprites.create(assets.image`gunup`, SpriteKind.Food)
+gunright = sprites.create(assets.image`gunright`, SpriteKind.Food)
+gundown = sprites.create(assets.image`gundown`, SpriteKind.Food)
+gunleft = sprites.create(assets.image`gunleft`, SpriteKind.Food)
 if (randint(1, 4) == 1) {
-    snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
     snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
     tiles.placeOnRandomTile(snek, assets.tile`myTile12`)
     animation.runImageAnimation(
@@ -184,9 +175,7 @@ if (randint(5, 8) == 1) {
     tall.setVelocity(200, 200)
     tall.follow(tarketup, 100)
 }
-/**
- * move speed
- */
+// move speed
 forever(function () {
     controller.moveSprite(mySprite, 80, 80)
 })

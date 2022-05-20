@@ -4,7 +4,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite,
     assets.animation`myAnim1`,
     200,
-    false
+    true
     )
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -13,7 +13,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite,
     assets.animation`walkright`,
     200,
-    false
+    true
     )
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -22,7 +22,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite,
     assets.animation`walkleft`,
     200,
-    false
+    true
     )
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -31,7 +31,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite,
     assets.animation`myAnim2`,
     200,
-    false
+    true
     )
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`transparency16`, function (sprite, location) {
@@ -65,5 +65,5 @@ if (randint(1, 4) == 1) {
     snek.follow(tarketup, 100)
 }
 forever(function () {
-    controller.moveSprite(mySprite, 50, 50)
+    controller.moveSprite(mySprite, 80, 80)
 })

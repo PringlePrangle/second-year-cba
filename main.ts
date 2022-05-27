@@ -1,7 +1,4 @@
 /**
- * create and set snek3 target
- */
-/**
  * setting the enemies target
  */
 /**
@@ -9,6 +6,9 @@
  */
 /**
  * create and set snek2 target
+ */
+/**
+ * create and set snek3 target
  */
 // create and set snek4 target
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, location) {
@@ -18,8 +18,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, 
     50,
     false
     )
-    gunup = sprites.createProjectileFromSprite(assets.image`myImage8`, gunup, 0, 150)
-    pause(2000)
+    gunup = sprites.createProjectileFromSprite(assets.image`myImage8`, gunup, 0, -150)
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.y += -1
@@ -38,8 +37,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile17`, function (sprite4,
     50,
     false
     )
-    projdown = sprites.createProjectileFromSprite(assets.image`myImage6`, projdown, 0, -150)
-    pause(2000)
+    projdown = sprites.createProjectileFromSprite(assets.image`myImage6`, projdown, 0, 150)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile18`, function (sprite2, location2) {
     animation.runImageAnimation(
@@ -49,7 +47,6 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile18`, function (sprite2,
     false
     )
     projright = sprites.createProjectileFromSprite(assets.image`myImage`, gunright, 150, 0)
-    pause(2000)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.x += 1
@@ -86,8 +83,10 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite3,
     false
     )
     projleft = sprites.createProjectileFromSprite(assets.image`myImage5`, gunleft, -150, 0)
-    pause(2000)
 })
+let tallright: Sprite = null
+let talleft: Sprite = null
+let talldown: Sprite = null
 let tall: Sprite = null
 let snekdown: Sprite = null
 let snekright: Sprite = null
@@ -130,72 +129,140 @@ let projectileup = sprites.createProjectileFromSprite(assets.image`myImage8`, gu
 projdown = sprites.createProjectileFromSprite(assets.image`myImage6`, gundown, 50, 50)
 projright = sprites.createProjectileFromSprite(assets.image`myImage`, gunright, 50, 50)
 projleft = sprites.createProjectileFromSprite(assets.image`myImage5`, gunleft, 50, 50)
-if (randint(1, 4) == 1) {
-    snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(snek, assets.tile`myTile12`)
-    animation.runImageAnimation(
-    snek,
-    assets.animation`snekfromup`,
-    200,
-    true
-    )
-    snek.setScale(3, ScaleAnchor.Bottom)
-    snek.setVelocity(200, 200)
-    snek.follow(tarketup, 100)
-}
-if (randint(1, 4) == 2) {
-    snekleft = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(snekleft, assets.tile`myTile14`)
-    animation.runImageAnimation(
-    snekleft,
-    assets.animation`snekfromleft`,
-    200,
-    true
-    )
-    snekleft.setScale(3, ScaleAnchor.Right)
-    snekleft.setVelocity(200, 200)
-    snekleft.follow(targetleft, 100)
-}
-if (randint(1, 4) == 3) {
-    snekright = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(snekright, assets.tile`myTile13`)
-    animation.runImageAnimation(
-    snekright,
-    assets.animation`snekfromright`,
-    200,
-    true
-    )
-    snekright.setScale(3, ScaleAnchor.Left)
-    snekright.setVelocity(200, 200)
-    snekright.follow(targetright, 100)
-}
-if (randint(1, 4) == 4) {
-    snekdown = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(snekdown, assets.tile`myTile15`)
-    animation.runImageAnimation(
-    snekdown,
-    assets.animation`snekfromdown`,
-    200,
-    true
-    )
-    snekdown.setScale(3, ScaleAnchor.Top)
-    snekdown.setVelocity(200, 200)
-    snekdown.follow(snekdown, 100)
-}
-if (randint(5, 8) == 1) {
-    tall = sprites.create(assets.image`myImage3`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(tall, assets.tile`myTile8`)
-    animation.runImageAnimation(
-    tall,
-    assets.animation`tallboifromtop`,
-    200,
-    true
-    )
-    tall.setScale(3, ScaleAnchor.Middle)
-    tall.setVelocity(200, 200)
-    tall.follow(tarketup, 100)
-}
 // move speed
 forever(function () {
     controller.moveSprite(mySprite, 80, 80)
+})
+forever(function () {
+    if (randint(1, 4) == 1) {
+        snek = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
+        tiles.placeOnRandomTile(snek, assets.tile`myTile12`)
+        animation.runImageAnimation(
+        snek,
+        assets.animation`snekfromup`,
+        200,
+        true
+        )
+        snek.setScale(3, ScaleAnchor.Bottom)
+        snek.setVelocity(200, 200)
+        snek.follow(tarketup, 100)
+    }
+    if (randint(1, 4) == 2) {
+        snekleft = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
+        tiles.placeOnRandomTile(snekleft, assets.tile`myTile14`)
+        animation.runImageAnimation(
+        snekleft,
+        assets.animation`snekfromleft`,
+        200,
+        true
+        )
+        snekleft.setScale(3, ScaleAnchor.Right)
+        snekleft.setVelocity(200, 200)
+        snekleft.follow(targetleft, 100)
+    }
+    if (randint(1, 4) == 3) {
+        snekright = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
+        tiles.placeOnRandomTile(snekright, assets.tile`myTile13`)
+        animation.runImageAnimation(
+        snekright,
+        assets.animation`snekfromright`,
+        200,
+        true
+        )
+        snekright.setScale(3, ScaleAnchor.Left)
+        snekright.setVelocity(200, 200)
+        snekright.follow(targetright, 100)
+    }
+    if (randint(1, 4) == 4) {
+        snekdown = sprites.create(assets.image`myImage0`, SpriteKind.Enemy)
+        tiles.placeOnRandomTile(snekdown, assets.tile`myTile15`)
+        animation.runImageAnimation(
+        snekdown,
+        assets.animation`snekfromdown`,
+        200,
+        true
+        )
+        snekdown.setScale(3, ScaleAnchor.Top)
+        snekdown.setVelocity(200, 200)
+        snekdown.follow(targetdown, 100)
+    }
+    if (randint(5, 8) == 5) {
+        tall = sprites.create(assets.image`myImage3`, SpriteKind.Enemy)
+        tiles.placeOnRandomTile(tall, assets.tile`myTile8`)
+        animation.runImageAnimation(
+        tall,
+        assets.animation`tallboifromtop`,
+        200,
+        true
+        )
+        tall.setScale(3, ScaleAnchor.Middle)
+        tall.setVelocity(200, 200)
+        tall.follow(tarketup, 100)
+    }
+    if (randint(5, 8) == 6) {
+        talldown = sprites.create(assets.image`myImage3`, SpriteKind.Enemy)
+        tiles.placeOnRandomTile(targetdown, assets.tile`myTile8`)
+        animation.runImageAnimation(
+        talldown,
+        assets.animation`tallboifrombottom`,
+        200,
+        true
+        )
+        talldown.setScale(3, ScaleAnchor.Middle)
+        talldown.setVelocity(200, 200)
+        talldown.follow(targetdown, 100)
+    }
+    if (randint(5, 8) == 7) {
+        talleft = sprites.create(assets.image`myImage3`, SpriteKind.Enemy)
+        tiles.placeOnRandomTile(talleft, assets.tile`myTile8`)
+        animation.runImageAnimation(
+        talleft,
+        assets.animation`tallboifromright`,
+        200,
+        true
+        )
+        talleft.setScale(3, ScaleAnchor.Middle)
+        talleft.setVelocity(200, 200)
+        talleft.follow(targetleft, 100)
+    }
+    if (randint(5, 8) == 8) {
+        tallright = sprites.create(assets.image`myImage3`, SpriteKind.Enemy)
+        tiles.placeOnRandomTile(tallright, assets.tile`myTile8`)
+        animation.runImageAnimation(
+        tallright,
+        assets.animation`tallboifromright`,
+        200,
+        true
+        )
+        tallright.setScale(3, ScaleAnchor.Middle)
+        tallright.setVelocity(200, 200)
+        tallright.follow(targetright, 100)
+    }
+    if (snek.overlapsWith(tarketup)) {
+        game.over(false)
+    }
+    if (snekleft.overlapsWith(targetleft)) {
+        game.over(false)
+    }
+    if (snekright.overlapsWith(targetright)) {
+        game.over(false)
+    }
+    if (snekdown.overlapsWith(targetdown)) {
+        game.over(false)
+    }
+    if (projdown.overlapsWith(snekdown)) {
+        snekdown.destroy(effects.ashes, 500)
+    }
+    if (projectileup.overlapsWith(snek)) {
+        snek.destroy(effects.ashes, 500)
+    }
+    if (projright.overlapsWith(snekright)) {
+        snekright.destroy(effects.ashes, 500)
+    }
+    if (projleft.overlapsWith(snekleft)) {
+        snekleft.destroy(effects.ashes, 500)
+    }
+})
+forever(function () {
+	
 })
